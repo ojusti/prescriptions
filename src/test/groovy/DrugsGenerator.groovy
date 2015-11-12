@@ -7,7 +7,11 @@ class DrugsGenerator {
 
     def drug(boxes) {
         drugName ++
-        new Drug(name: drugName, boxes: boxes)
+        drug(drugName, boxes)
+    }
+
+    static def drug(name, boxes) {
+        new Drug(name: name, boxes: boxes)
     }
 
 }
