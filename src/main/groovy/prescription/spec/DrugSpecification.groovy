@@ -5,6 +5,6 @@ package prescription.spec
 class DrugSpecification {
     def maxBoxCount
     def test(drug) {
-        drug.boxes <= maxBoxCount
+        drug.boxCount <= maxBoxCount
     }
 }

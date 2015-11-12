@@ -8,6 +8,10 @@ class Receipt {
         "$drugList.size drugs: $drugList"
     }
 
+    def size() {
+        drugList.size()
+    }
+
     boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
