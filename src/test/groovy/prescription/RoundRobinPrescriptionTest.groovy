@@ -9,9 +9,11 @@ import spock.lang.Specification
 class RoundRobinPrescriptionTest extends Specification {
 
     def generator
+
     def setup() {
         generator = new DrugsGenerator()
     }
+
     void "should distribute 0 drugs to 0 receipts"() {
         given:
         def distributor = new RoundRobinPrescriptionFactory()
@@ -23,7 +25,7 @@ class RoundRobinPrescriptionTest extends Specification {
 
     void "should distribute 1 box of 1 drug to 1 receipt"() {
         given:
-        def drugList = [ drug(1) ]
+        def drugList = [drug(1)]
         def distributor = new RoundRobinPrescriptionFactory(drugList: drugList)
         expect:
         new Prescription().addReceiptFor(drugList) == distributor.makePrescription()
@@ -31,14 +33,24 @@ class RoundRobinPrescriptionTest extends Specification {
 
     void "should distribute 2 boxes of 1 drug to 2 receipts"() {
         given:
-        def distributor = new RoundRobinPrescriptionFactory(drugList: [drug('a', 2) ])
+        def distributor = new RoundRobinPrescriptionFactory(drugList: [drug('a', 2)])
         expect:
-        new Prescription().addReceiptFor([drug('a', 1)]).addReceiptFor([drug('a', 1)]) == distributor.makePrescription()
+        new Prescription().addReceiptFor([drug('a', 1)])
+                .addReceiptFor([drug('a', 1)]) == distributor.makePrescription()
+    }
+
+    void "should distribute 2 boxes of 2 drugs to 2 receipts"() {
+        given:
+        def distributor = new RoundRobinPrescriptionFactory(drugList: [drug('a', 2), drug('b', 2)])
+        expect:
+        new Prescription().addReceiptFor([drug('a', 1), drug('b', 1)])
+                .addReceiptFor([drug('a', 1), drug('b', 1)]) == distributor.makePrescription()
     }
 
     def drug(boxesCount) {
         generator.drug(boxesCount)
     }
+
     def drug(drugName, boxesCount) {
         generator.drug(drugName, boxesCount)
     }
