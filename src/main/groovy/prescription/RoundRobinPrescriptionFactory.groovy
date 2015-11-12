@@ -10,20 +10,18 @@ class RoundRobinPrescriptionFactory {
             throw new EmptyPrescriptionException()
         }
 
-        def receipts = makeListOfDrugsForReceipts()
-
         def prescription = new Prescription()
-        receipts.each { prescription.addReceiptFor(it) }
+        separateListsOfDrugsForReceipts().each { prescription.addReceiptFor(it) }
         return prescription
     }
 
-    private def makeListOfDrugsForReceipts() {
+    private def separateListsOfDrugsForReceipts() {
         def receipts = makeEmptyReceipts(computeReceiptCount())
-        def oneBoxDrugList = drugList.collect { separateBoxes(it) }.flatten()
+        def sequenceOfOneBoxDrug = drugList.collect { separateBoxes(it) }.flatten()
 
-        for (int receiptIndex = 0; !oneBoxDrugList.isEmpty(); receiptIndex = (receiptIndex + 1) % receipts.size()) {
+        for (int receiptIndex = 0; !sequenceOfOneBoxDrug.isEmpty(); receiptIndex = (receiptIndex + 1) % receipts.size()) {
 
-            receipts[receiptIndex] << oneBoxDrugList.remove(0)
+            receipts[receiptIndex] << sequenceOfOneBoxDrug.remove(0)
         }
         return receipts.values()
     }
