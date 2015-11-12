@@ -16,15 +16,8 @@ class RoundRobinPrescriptionFactory {
     }
 
     private def separateListsOfDrugsForEachReceipt(drugList) {
-        def receipts = makeEmptyReceipts(computeReceiptCount(drugList))
-        def sequenceOfOneBoxDrugs = drugList.collect { separateBoxes(it) }.flatten()
-
-        sequenceOfOneBoxDrugs.inject(0) { index, drugBox ->  receipts[index] << drugBox; (index + 1) % receipts.size() }
-        return receipts.values()
-    }
-
-    private def makeEmptyReceipts(def count) {
-        (0..count-1).collectEntries {[(it): []]}
+        def sequenceofOneBoxDrugs = drugList.collect { separateBoxes(it) }.flatten()
+        new RoundRobinDistribution(computeReceiptCount(drugList)).putAll(sequenceofOneBoxDrugs).getBuckets()
     }
 
     private def separateBoxes(def drug) {
@@ -38,5 +31,34 @@ class RoundRobinPrescriptionFactory {
         def minNumberOfReceiptsForOneDrug = ceil(drugList.boxCount.max() / drugSpec.maxBoxCount)
         [minNumberOfReceiptsForOneDrug, minNumberOfReceipts].max()
     }
+
+
+    private static class RoundRobinDistribution {
+        private def buckets
+        private def index;
+        RoundRobinDistribution(bucketCount) {
+            buckets = (0..bucketCount-1).collectEntries {[(it): []]}
+            index = 0;
+        }
+        def putAll(sequence) {
+            sequence.each { put(it) }
+            return this
+        }
+
+        def put(item) {
+            buckets[index] << item
+            index = nextIndex()
+            return this
+        }
+
+        private nextIndex() {
+            (index + 1) % buckets.size()
+        }
+
+        def getBuckets() {
+            buckets.values()
+        }
+    }
+
 
 }
