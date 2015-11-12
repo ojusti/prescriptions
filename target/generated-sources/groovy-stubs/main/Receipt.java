@@ -13,7 +13,9 @@ public  void setMetaClass(groovy.lang.MetaClass mc) { }
 public  java.lang.Object invokeMethod(java.lang.String method, java.lang.Object arguments) { return null;}
 public  java.lang.Object getProperty(java.lang.String property) { return null;}
 public  void setProperty(java.lang.String property, java.lang.Object value) { }
-public  java.lang.Object getDrugs() { return null;}
-public  void setDrugs(java.lang.Object value) { }
+public  java.lang.Object getDrugList() { return null;}
+public  void setDrugList(java.lang.Object value) { }
 @java.lang.Override() public  java.lang.String toString() { return (java.lang.String)null;}
+public  boolean equals(java.lang.Object o) { return false;}
+public  int hashCode() { return (int)0;}
 }

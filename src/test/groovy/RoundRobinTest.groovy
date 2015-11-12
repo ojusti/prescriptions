@@ -21,7 +21,7 @@ class RoundRobinTest extends Specification {
         def drugList = [ drug(1) ]
         def distributor = new RoundRobin(drugList: drugList)
         expect:
-        [new Receipt(drugs: drugList)] == distributor.distribute()
+        [new Receipt(drugList: drugList)] == distributor.distribute()
     }
 
     def drug(boxesCount) {
