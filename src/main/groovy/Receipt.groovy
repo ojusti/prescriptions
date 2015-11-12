@@ -6,21 +6,17 @@ class Receipt {
 
     @Override
     String toString() {
-        "$drugList.size $drugList"
+        "$drugList.size drugs: $drugList"
     }
 
     boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
 
-        Receipt receipt = (Receipt) o
-
-        if (drugList != receipt.drugList) return false
-
-        return true
+        drugList == o.drugList
     }
 
     int hashCode() {
-        return (drugList != null ? drugList.hashCode() : 0)
+        return drugList.hashCode()
     }
 }

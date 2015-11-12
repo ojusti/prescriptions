@@ -1,3 +1,4 @@
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
 /**
@@ -11,24 +12,26 @@ class RoundRobinTest extends Specification {
     }
     void "should distribute 0 drugs to 0 receipts"() {
         given:
-        def distributor = new RoundRobin()
-        expect:
-        [] == distributor.distribute()
+        def distributor = new RoundRobinPrescriptionFactory()
+        when:
+        distributor.makePrescription()
+        then:
+        thrown(EmptyPrescriptionException)
     }
 
     void "should distribute 1 box of 1 drug to 1 receipt"() {
         given:
         def drugList = [ drug(1) ]
-        def distributor = new RoundRobin(drugList: drugList)
+        def distributor = new RoundRobinPrescriptionFactory(drugList: drugList)
         expect:
-        [receiptFor(drugList)] == distributor.distribute()
+        new Prescription().addReceiptFor(drugList) == distributor.makePrescription()
     }
 
     void "should distribute 2 boxes of 1 drug to 2 receipts"() {
         given:
-        def distributor = new RoundRobin(drugList: [drug('a', 2) ])
+        def distributor = new RoundRobinPrescriptionFactory(drugList: [drug('a', 2) ])
         expect:
-        [receiptFor([drug('a', 1)]), receiptFor([drug('a', 1)])] == distributor.distribute()
+        new Prescription().addReceiptFor([drug('a', 1)]).addReceiptFor([drug('a', 1)]) == distributor.makePrescription()
     }
 
     def drug(boxesCount) {
