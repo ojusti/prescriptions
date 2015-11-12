@@ -4,4 +4,9 @@
 class Drug {
     def name
     def boxes
+
+    @Override
+    String toString() {
+        "$name($boxes boxes)"
+    }
 }

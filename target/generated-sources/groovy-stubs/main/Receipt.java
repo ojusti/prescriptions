@@ -15,4 +15,5 @@ public  java.lang.Object getProperty(java.lang.String property) { return null;}
 public  void setProperty(java.lang.String property, java.lang.Object value) { }
 public  java.lang.Object getDrugs() { return null;}
 public  void setDrugs(java.lang.Object value) { }
+@java.lang.Override() public  java.lang.String toString() { return (java.lang.String)null;}
 }

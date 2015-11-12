@@ -1,17 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: RoundRobinTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.623 sec <<< FAILURE!
-should distribute 1 box of 1 drug to 1 receipts(RoundRobinTest)  Time elapsed: 0.151 sec  <<< FAILURE!
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.611 sec <<< FAILURE!
+should distribute 1 box of 1 drug to 1 receipts(RoundRobinTest)  Time elapsed: 0.114 sec  <<< FAILURE!
 Condition not satisfied:
 
-[receiptFor(drug(1))] == distributor.distribute()
- |          |         |  |           |
- |          |         |  |           []
- |          |         |  RoundRobin@635eaaf1
- |          |         false
- |          Drug@31d7b7bf
- Receipt@353d0772
+[new Receipt(drugs: drugList)] == distributor.distribute()
+ |                  |          |  |           |
+ 1 [a(1 boxes)]     |          |  |           []
+                    |          |  RoundRobin@5bf0d49
+                    |          false
+                    [a(1 boxes)]
 
-	at RoundRobinTest.should distribute 1 box of 1 drug to 1 receipts(RoundRobinTest.groovy:22)
+	at RoundRobinTest.should distribute 1 box of 1 drug to 1 receipts(RoundRobinTest.groovy:24)
 

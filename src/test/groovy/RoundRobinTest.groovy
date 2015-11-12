@@ -4,8 +4,10 @@ import spock.lang.Specification
  * Created by justi on 11.11.2015.
  */
 class RoundRobinTest extends Specification {
+
+    def generator
     def setup() {
-        resetDrugName()
+        generator = new DrugsGenerator()
     }
     void "should distribute 0 drug to 0 receipts"() {
         given:
@@ -16,22 +18,14 @@ class RoundRobinTest extends Specification {
 
     void "should distribute 1 box of 1 drug to 1 receipts"() {
         given:
-        def distributor = new RoundRobin(drugs: drug(1))
-        resetDrugName()
+        def drugList = [ drug(1) ]
+        def distributor = new RoundRobin(drugList: drugList)
         expect:
-        [receiptFor(drug(1))] == distributor.distribute()
+        [new Receipt(drugs: drugList)] == distributor.distribute()
     }
 
-    def drugName
-    def resetDrugName() {
-        drugName = 0
-    }
-    def drug(boxes) {
-        drugName ++
-        new Drug(name: drugName, boxes: boxes)
+    def drug(boxesCount) {
+        generator.drug(boxesCount)
     }
 
-    def receiptFor(Drug drug) {
-        new Receipt(drugs: [drug])
-    }
 }

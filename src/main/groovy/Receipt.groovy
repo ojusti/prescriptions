@@ -3,4 +3,9 @@
  */
 class Receipt {
     def drugs
+
+    @Override
+    String toString() {
+        "$drugs.size $drugs"
+    }
 }

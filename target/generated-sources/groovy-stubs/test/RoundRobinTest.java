@@ -13,10 +13,8 @@ public  void setMetaClass(groovy.lang.MetaClass mc) { }
 public  java.lang.Object invokeMethod(java.lang.String method, java.lang.Object arguments) { return null;}
 public  java.lang.Object getProperty(java.lang.String property) { return null;}
 public  void setProperty(java.lang.String property, java.lang.Object value) { }
-public  java.lang.Object getDrugName() { return null;}
-public  void setDrugName(java.lang.Object value) { }
+public  java.lang.Object getGenerator() { return null;}
+public  void setGenerator(java.lang.Object value) { }
 public  java.lang.Object setup() { return null;}
-public  java.lang.Object resetDrugName() { return null;}
-public  java.lang.Object drug(java.lang.Object boxes) { return null;}
-public  java.lang.Object receiptFor(Drug drug) { return null;}
+public  java.lang.Object drug(java.lang.Object boxesCount) { return null;}
 }
