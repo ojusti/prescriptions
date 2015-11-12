@@ -1,3 +1,4 @@
+package prescription
 /**
  * Created by justi on 12.11.2015.
  */
@@ -11,7 +12,7 @@ class DrugsGenerator {
     }
 
     static def drug(name, boxes) {
-        new Drug(name: name, boxes: boxes)
+        new Drug(name: name, boxCount: boxes)
     }
 
 }

@@ -1,10 +1,12 @@
-import spock.lang.IgnoreRest
+package prescription
+
+import prescription.spec.EmptyPrescriptionException
 import spock.lang.Specification
 
 /**
  * Created by justi on 11.11.2015.
  */
-class RoundRobinTest extends Specification {
+class RoundRobinPrescriptionTest extends Specification {
 
     def generator
     def setup() {

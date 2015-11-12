@@ -1,26 +1,25 @@
-/**
- * Created by justi on 11.11.2015.
- */
+package prescription
+
 class Drug {
     def name
-    def boxes
+    def boxCount
 
     @Override
     String toString() {
-        "$name($boxes boxes)"
+        "$name($boxCount boxes)"
     }
 
     boolean equals(o) {
         if (this.is(o)) return true
         if (getClass() != o.class) return false
 
-        return boxes == o.boxes && name == o.name
+        return boxCount == o.boxCount && name == o.name
     }
 
     int hashCode() {
         int result
         result = name.hashCode()
-        result = 31 * result + boxes.hashCode()
+        result = 31 * result + boxCount.hashCode()
         return result
     }
 }

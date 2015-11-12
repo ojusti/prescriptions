@@ -1,6 +1,5 @@
-/**
- * Created by justi on 12.11.2015.
- */
+package prescription
+
 class Prescription {
     private def receiptList = []
 

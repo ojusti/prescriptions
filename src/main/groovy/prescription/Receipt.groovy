@@ -1,6 +1,5 @@
-/**
- * Created by justi on 11.11.2015.
- */
+package prescription
+
 class Receipt {
     def drugList = []
 
